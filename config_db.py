@@ -1,13 +1,16 @@
 import mysql.connector
 
-db = mysql.connector.connect(
+mydb = mysql.connector.connect(
     host = "localhost",
     user = "root",
-    password = "1234",
+    password = "",
     database = "python_crud"
 )
 
-cursor = db.cursor()
+# Teste da conexão
+# print(mydb)
+
+cursor = mydb.cursor()
 
 # Criação do database:
 # sql = "CREATE DATABASE python_crud"
@@ -21,12 +24,23 @@ cursor = db.cursor()
 
 # Insert:
 # sql = "INSERT INTO teste (produto, preco) VALUES (%s, %s)"
-# val = ("cereal", "12.25") -> essa variavel tem que ser colocada no "cursor.execute()" também
+# val = ("cereal", 12.25)# -> essa variavel tem que ser colocada no "cursor.execute()" também
 # obs -> o insert precisa que o método "mydb.commit()" seja colocado depois do excute para inserir o "val" no "sql"
 
 # Select:
 # sql = "SELECT * FROM teste"
 # result = cursor.fetchall() -> precisa ser colocado depois do "cursor.execute()" caso queira pegar/armazenar os valores
-# obs -> para exibir usa-se um laço de repetição, ex: "for"
+# obs 1 -> para exibir usa-se um laço de repetição, ex: "for"
+# obs 2 -> para selecionar uma unica linha/informação utiliza-se o metodo "fetchone()"
+
+# Delete:
+# sql = "DELETE FROM teste WHERE id=%s"
+# val = (1)
+# obs -> assim como o insert também necessita do uso do "mydb.commit()" após o "cursor.execute()"
+
+# Update:
+# sql = "UPDATE teste SET produto = %s WHERE id = %s"
+# val = ("sabão", 1)
+# obs -> te a mesma obrigatoriedade que o insert e o delete quanto ao "mydb.commit()"
 
 cursor.execute(sql)
